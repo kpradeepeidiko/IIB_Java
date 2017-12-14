@@ -1,0 +1,99 @@
+
+                                                  IIB_ADMIN COMMANDS
+												  ==================
+
+1) Creating Broker:
+-------------------
+mqsicreatebroker <brokername> -i <username> -a <password> -q <qmgrName>
+
+2)Creatin ExecutionGroup:
+--------------------------
+mqsicreateexecutiongroup <brokerName> -e <ExectuionGroupName>
+
+3)Start Broker:
+-----------------
+mqsistart <BrokerName>
+
+4)Stop Broker:
+-----------------
+mqsistop <BrokerName>
+
+5) List the execution groups on a particular broker:
+-----------------------------------------------------
+mqsilist <BrokerName>
+
+6)Broker and Quemanagers list and status(running or stop):
+-----------------------------------------------------------
+mqsilist
+
+7)Deploying a Bar File:
+------------------------
+mqsideploy <BrokerName> -e <ExecutionGroup> -a <BarFilePath>
+
+8)Which application is running on particular execution group:
+--------------------------------------------------------------
+mqsilist <BrokerName> -e <ExecutionGroup>
+
+9)Display bar file properties:
+-------------------------------
+mqsireadbar -b <BarfilePath> -r
+
+10)create the properties file using bar file:
+----------------------------------------------
+mqsireadbar -b <BarFileName> > -p <New PropertiesFileName> -r
+
+11) If you make any changes in bar file Then this command is mandatory:
+------------------------------------------------------------------------
+mqsiapplybaroverride -b <barfileName> -p <propertiesFileName>
+
+12) To check given bar file is valid or not:
+--------------------------------------------
+step 1) create required queues(INQ,OUTQ)
+step 2) Put message in INQ(amqsput <queueName> <qmgrName>)
+step 3) Get message in OUTQ(amqsget <queueName> <qmgrName>)
+If the message get successfully then the bar file is valid.
+
+13)start and stop the executionGroup:
+------------------------------------
+mqsistartmsgflow <BrokerName> -e <ExecutionGroupName>
+mqsistopmsgflow <BrokerName> -e <ExecutionGroupName>
+
+14)start and stop the message flow :
+--------------------------------------
+
+mqsistartmsgflow <BrokerName> -e <ExecutionGroupName> -k <application name> -m <flowName>
+mqsistopmsgflow <BrokerName> -e <ExecutionGroupName> -k <applicationName> -m <FlowName>
+
+
+
+----------------------------------------------------------*****************************---------------------------------------------------------
+================================================================================================================================================
+
+1)To change the broker wide listeners PORT for http messages:
+---------------------------------------------------------
+mqsichangeproperties <BrokerName> -b httplistener -o HTTPConnector -n port -v <Some Port(3483)>
+
+2)To view the properties for broker wide listeners:
+-----------------------------------------------------
+mqsireportproperties <BrokerName> -b httplistener -o HTTPConnector -r
+
+3)Broker-wide listener properties that apply to HTTP and HTTPS messages are controlled by the HTTPListener object.
+ Disable the broker-wide listener for <myBroker>:(Then it will listen the execution level port):
+ -----------------------------------------------------------------------------------------------------------------
+ mqsichangeproperties <BrokerName> -b httplistener -o HTTPListener -n startListener -v false
+ 
+ 4)Backup the broker:
+ ----------------------
+ mqsibackupbroker <BrokerName> -d <path> -a <BackupName.zip>
+ 
+then delete that broker(eg:BRKR):
+
+5)Restore the Broker:
+-----------------------
+step 1)create the broker with same queue manager
+step 2) stop the broker
+step 3)mqsirestorebroker <BrokerName> -d <path> -a <BackupFile.zip>
+ Then it will Restore.
+ 
+ ==============================================================THE END=============================================================
+

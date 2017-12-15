@@ -1,0 +1,43 @@
+CREATE COMPUTE MODULE String_Functions_Examples_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+				
+		DECLARE I,J,K,L,M,N,O,P,Q,R,S,T INTEGER;
+		
+		 SET I = POSITION('Village' IN 'Hursley Village'); -- returns 9
+         SET J = POSITION('Town' IN 'Hursley Village');   --returns 0 
+
+         SET K = POSITION ('B' IN 'ABCABCABCABCABC'); -- returns 2
+         SET L = POSITION ('D' IN 'ABCABCABCABCABC'); -- returns 0
+
+         SET M = POSITION ('A' IN 'ABCABCABCABCABC' FROM 4); -- returns 4
+         SET N = POSITION ('C' IN 'ABCABCABCABCABC' FROM 2); -- returns 3
+
+         SET O = POSITION ('B' IN 'ABCABCABCABCABC' REPEAT 2); -- returns 5
+         SET P = POSITION ('C' IN 'ABCABCABCABCABC' REPEAT 4); -- returns 12
+
+         SET Q = POSITION ('A' IN 'ABCABCABCABCABC' FROM 4 REPEAT 3); -- returns 10
+         SET R = POSITION ('AB' IN 'ABCABCABCABCABC' FROM 2 REPEAT 3); -- returns 10
+
+         SET S = POSITION ('A' IN 'ABCABCABCABCABC' REPEAT -2); -- returns 10
+         SET T = POSITION ('BC' IN 'ABCABCABCABCABC' FROM 2 REPEAT -3); -- returns 5*/
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

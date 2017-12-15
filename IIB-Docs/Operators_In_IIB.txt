@@ -1,0 +1,21 @@
+Operators
+===============================================
+Operator >
+	The first operand is "greater than" the second.
+
+Operator <
+	The first operand is "less than" the second.
+
+Operator>=
+	The first operand is "greater than or equal" to the second.
+
+Operator <=
+	The first operand is "less than or equal" to the second.
+
+Operator =
+	The first operand is "equal" to that of the second.
+	This operator can also compare rows and lists. See ROW and LIST comparisons for a description of list and row comparison.
+
+Operator <>
+	The first operand is "not equal" to the second.
+	This operator can also compare rows and lists. See ROW and LIST comparisons for a description of list and row comparison.

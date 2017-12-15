@@ -1,0 +1,129 @@
+STRING FUNCTIONS:-
+=======================
+CONTAINS( '<String>', '<String>'):- This Function is used to If the Given String/Char is available Return True OtherWise Return False.
+ENDSWITH( '<String>', '<Char>'):- This Function is used to If the Given String/Char is available In The Endof The string Return True OtherWise Return False.
+LEFT('<String>' , <Index>):	- Returns First Three Characters from Left Side of the String.
+		
+LENGTH( '<String>'):-	 Returns Length of the String.
+POSITION( '<String>' IN '<String>'):- This Function Is used to Get The Position Of The Given String Using Character Position and String Position.
+REPLACE('<String>', '<String>', '<String>' ):- This Function Is Used To Replace The String With Another Given string.
+REPLICATE('<String>', <Index> ):- This Function Is Used To Repeat The String For The Given Number Of Times.
+RIGHT( '<String>', <Index>):- This Fun Is Used To Return Last Characters From The Specified Number.
+RTRIM( '<String>'):- This Function Remove The Spaces Form The Ending From Right Side Of The String.
+SPACE( ):- This Function Returns NULL If It Is NULL
+POSITION( ):- This Function Is used to Get The Position Of The Given String Using Character Position and String Position.
+REPLACE( ):- This Function Is Used To Replace The String With Another Given string.
+REPLICATE( ):- This Function Is Used To Repeat The String For The Given Number Of Times.
+RIGHT( ):- This Fun Is Used To Return Last Characters From The Specified Number.
+RTRIM( ):- This Function Remove The Spaces Form The Ending From Right Side Of The String.
+SPACE( ):- This Function Returns NULL If It Is NULL.
+TRIM( '<String>'):-We Can use this function by removing the spaces as well as removing the spicified character from a string.
+UCASE( '<String>'):-This  Function Is Used to Translate Lower case To an UpperCase Letter.
+SUBSTRING( ):- This Function Is Used To get Sub String Of a Specified String.
+TRANSLATE( '<String>', '<Char>', '<Char>'):- This Function Is Used To Replace The String/Char To a Specified String/Char.
+====================================================================================================================================
+Examples
+=============
+		IF (CONTAINS('HelloWorld','World')) THEN
+			 RETURN TRUE;
+		 ELSE
+			 RETURN FALSE;
+		 END IF;
+		 
+		 IF (ENDSWITH('HelloWorld','Hello')) THEN
+			 RETURN TRUE;
+		 ELSE
+			 RETURN FALSE;
+		 END IF;
+		 
+		 IF (STARTSWITH('rajesh','r')) THEN
+		 	 RETURN TRUE;
+		 ELSE
+			 RETURN FALSE;
+		 END IF;
+		 
+		 
+		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+	
+		 DECLARE left CHARACTER;
+		 DECLARE length INTEGER;
+		
+		 SET left = LEFT('rajeshkumar',3);	-------Returns First Three Characters from Left Side of the String
+		 SET length = LENGTH('RAJESHKUMAR');	-------Returns Length of the String
+		
+		 DECLARE lower,lcase,ltrim,overlay CHARACTER;
+		
+		 SET lower = LOWER('EIDIKO');		-------Returns Given String Into a Lower Case
+		 
+		 SET lcase = LCASE('EIDIKO');		-------Returns Given String Into a Lower Case	
+		
+		 SET ltrim = LTRIM('  rajeshkumar');	-----This Function Remove the spaces Form the Starting Of the LeftSide of the String
+		
+		 SET overlay = OVERLAY ('ABCDEFGHIJ' PLACING '12345' FROM 4 FOR 2);	----This Function Return the Place Of the 4th character replaced by 1234 and Remove 2 characters
+		
+		++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			 ---Obtaining The Positions Of The Given String Using Character Position and String Position
+		
+		 DECLARE I,J,K,L,M,N,O,P,Q,R,S,T INTEGER;
+		
+		 SET I = POSITION('Village' IN 'Hursley Village'); -- returns 9
+         SET J = POSITION('Town' IN 'Hursley Village');   --returns 0 
+
+         SET K = POSITION ('B' IN 'ABCABCABCABCABC'); -- returns 2
+         SET L = POSITION ('D' IN 'ABCABCABCABCABC'); -- returns 0
+
+         SET M = POSITION ('A' IN 'ABCABCABCABCABC' FROM 4); -- returns 4
+         SET N = POSITION ('C' IN 'ABCABCABCABCABC' FROM 2); -- returns 3
+
+         SET O = POSITION ('B' IN 'ABCABCABCABCABC' REPEAT 2); -- returns 5
+         SET P = POSITION ('C' IN 'ABCABCABCABCABC' REPEAT 4); -- returns 12
+
+         SET Q = POSITION ('A' IN 'ABCABCABCABCABC' FROM 4 REPEAT 3); -- returns 10
+         SET R = POSITION ('AB' IN 'ABCABCABCABCABC' FROM 2 REPEAT 3); -- returns 10
+
+         SET S = POSITION ('A' IN 'ABCABCABCABCABC' REPEAT -2); -- returns 10
+         SET T = POSITION ('BC' IN 'ABCABCABCABCABC' FROM 2 REPEAT -3); -- returns 5*/
+         
+        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+         DECLARE replace,replicate,right,rtrim,space,trim1,trim2,trim3,trim4,upper,ucase CHARACTER;
+         
+		 SET replace = REPLACE('RAJESHKUMAR', 'RAJESH', 'ANIL');	----This Function Is Used To Replace The String With Another Given string
+		
+		 SET replicate = REPLICATE('rajesh-',5);		----This Function Is Used To Repeat The String For The Given Number Of Times
+	    
+	     SET right = RIGHT('rajeshkumar',3);		----This Fun Is Used To Return Last Characters From The Specified Number
+		
+		 SET rtrim = RTRIM('EIDIKO      ');		----This Function Remove The Spaces Form The Ending From Right Side Of The String
+		
+		 SET space = SPACE(NULL);				----This Function Returns NULL If It Is NULL 
+		
+		++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		 SET trim1 = TRIM(TRAILING 'O' FROM 'EIDIKO');	---returns 'EIDIK'
+		
+		 SET trim2 = TRIM('  EIDIKO  ');	---returns 'EIDIKO'
+		
+		 SET trim3 = TRIM(LEADING FROM '  EIDIKO  ');		---returns 'EIDIKO '
+		
+	     SET trim4 = TRIM('B' FROM 'BLOB');		---returns 'LO'
+		
+		 SET upper = UPPER('eidiko systems integrators');		---returns 'EIDIKO SYSTEMS INTEGRATORS'
+	
+		 SET ucase = UCASE('hello123hai');	---returns 'HELLO123HAI'
+		
+		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		 DECLARE substr1,substr2,substr3,substr4,substr5,substr6,translate CHARACTER;
+		
+		 SET substr1 = SUBSTRING('EIDIKO SYSTEMS INTEGRATORS' BEFORE 'INTEGRATORS');	---returns 'EIDIKO SYSTEMS '
+		
+		 SET substr2 = SUBSTRING('EIDIKO SYSTEMS INTEGRATORS' BEFORE 'SYSTEMS' FOR 5);	---returns 'DIKO '.
+		
+		 SET substr3 = SUBSTRING('EIDIKO SYSTEMS INTEGRATORS' BEFORE 'S');	---returns 'EIDIKO '.
+		
+		 SET substr4 = SUBSTRING('EIDIKO SYSTEMS INTEGRATORS' AFTER 'EIDIKO');	---returns ' SYSTEMS INTEGRATORS'.
+		
+		 SET substr5 = SUBSTRING('EIDIKO SYSTEMS INTEGRATORS' AFTER 'I' FOR 6);	---returns 'DIKO S'.
+		
+		 SET substr6 = SUBSTRING('EIDIKO SYSTEMS INTEGRATORS' AFTER 'O');	---returns ' SYSTEMS INTEGRATORS'.
+		
+		 SET translate = TRANSLATE('EIDIKO SYSTEMS INTEGRATORS','I','E');		---returns 'EEDEKO SYSTEMS ENTEGRATORS'

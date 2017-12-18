@@ -1,5 +1,5 @@
 STRING FUNCTIONS:-
-=======================
+----------------------
 CONTAINS( '<String>', '<String>'):- This Function is used to If the Given String/Char is available Return True OtherWise Return False.
 ENDSWITH( '<String>', '<Char>'):- This Function is used to If the Given String/Char is available In The Endof The string Return True OtherWise Return False.
 LEFT('<String>' , <Index>):	- Returns First Three Characters from Left Side of the String.
@@ -21,9 +21,9 @@ TRIM( '<String>'):-We Can use this function by removing the spaces as well as re
 UCASE( '<String>'):-This  Function Is Used to Translate Lower case To an UpperCase Letter.
 SUBSTRING( ):- This Function Is Used To get Sub String Of a Specified String.
 TRANSLATE( '<String>', '<Char>', '<Char>'):- This Function Is Used To Replace The String/Char To a Specified String/Char.
-====================================================================================================================================
+==========================================================================================================================================
 Examples
-=============
+----------
 		IF (CONTAINS('HelloWorld','World')) THEN
 			 RETURN TRUE;
 		 ELSE

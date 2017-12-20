@@ -1,0 +1,73 @@
+Extract
+-----------
+		DECLARE yr INTEGER;
+		SET yr = EXTRACT(YEAR FROM CURRENT_DATE); --returns number of years from 1-2015
+		
+		DECLARE mnth INTEGER;
+		SET mnth = EXTRACT(MONTHS FROM CURRENT_DATE); -- returns number of months from 1-2015
+		
+		DECLARE wk INTEGER;
+		SET wk = EXTRACT(WEEKS FROM CURRENT_DATE); --returns number of weeks from 1-2015
+		
+		DECLARE dy INTEGER;
+		SET dy = EXTRACT(DAYS FROM CURRENT_DATE); --returns number of days from 1-2015
+		
+		DECLARE qy INTEGER;
+		SET qy = EXTRACT(QUARTERS FROM CURRENT_DATE); --returns number of Quarter years from 1-2015
+		
+		DECLARE doy INTEGER;
+		SET doy = EXTRACT(DAYOFYEAR FROM CURRENT_DATE); --returns number of days from 01-01-2015 to 21-07-2015
+		
+		DECLARE woy INTEGER;
+		SET woy = EXTRACT(WEEKOFYEAR FROM CURRENT_DATE); --returns number of weeks from 01-01-2015 to 21-07-2015
+		
+		DECLARE dow INTEGER;
+		SET dow = EXTRACT(DAYOFWEEK FROM CURRENT_DATE); --returns a day of this week
+		
+		DECLARE wom INTEGER;
+		SET wom = EXTRACT(WEEKOFMONTH FROM CURRENT_DATE); --returns a week of this month
+		
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Concate
+-----------
+		DECLARE i1,i2,i3 CHARACTER;
+        SET i1 = CURRENT_TIME + INTERVAL '1' HOUR; --adding one hour to your current time
+        SET i2 = CURRENT_DATE + INTERVAL '5' DAY;  -- adding 5days to your current date
+        SET i3 = CURRENT_DATE + INTERVAL '2-05' YEAR TO MONTH; --adding 2years and 5months to your current date
+		
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ROW
+----
+SET OutputRoot.XMLNSC.Library = ROW('XML Developer' AS Book,'Kristy Powel' AS Author, '1995' AS Published_Year,'20$' AS Cost);   --It creates an XML File.
+
+Output:
+-----------
+<Library>
+	<Book>XML Developer</Book>
+	<Author>Kristy Powel</Author>
+	<Published_Year>1995</Published_Year>
+	<Cost>20$</Cost>
+</Library>
+=======================================================================================
+NullIF
+----------
+	DECLARE result CHARACTER NULLIF(2, 3); -- returns 2, since both parameters are not equal.It sets first parameter.
+	SET OutputRoot.XMLNSC.Data.res = result;
+		
+	DECLARE result1 CHARACTER NULLIF(2, 2); -- returns Null, Since both are equal. It sets null value.
+	SET OutputRoot.XMLNSC.Data.res1 = result1;
+	
+=========================================================================================
+List
+-------
+SET OutputRoot.XMLNSC.Result.Fruits.From[] = LIST{'Hyderabad','Mumbai','Vizag'};
+
+output:
+
+<Result>
+	<Fruits>
+		<From>Hyderabad</From>
+		<From>Mumbai</From>
+		<From>Vizag</From>
+	</Fruits>
+</Result>

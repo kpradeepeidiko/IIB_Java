@@ -1,0 +1,33 @@
+CASE Operation
+-------------------
+	DECLARE color CHARACTER 'blue';
+	CASE
+	WHEN color = 'green' THEN
+		SET OutputRoot.XMLNSC.XMLMsg.Color = color;
+	WHEN color = 'pink' THEN
+		SET OutputRoot.XMLNSC.XMLMsg.Color = color;
+	WHEN color = 'blue' THEN
+		SET OutputRoot.XMLNSC.XMLMsg.Color = color;
+	ELSE
+		SET OutputRoot.XMLNSC.XMLMsg.Color = 'UNKNOWN';
+	END CASE;
+	
+===============================================================
+CASE Function
+--------------------
+	DECLARE str CHARACTER '010203040506';
+	DECLARE currMonth CHAR;
+	DECLARE MonthText CHAR;
+	DECLARE len INTEGER;
+	SET len = LENGTH(str);
+	SET currMonth = SUBSTRING(str from 7 for 2);
+	SET OutputRoot.XMLNSC.MonthText = 
+			CASE currMonth
+			WHEN '01' THEN 'January'
+			WHEN '02' THEN 'February'
+			WHEN '03' THEN 'March'
+			WHEN '04' THEN 'April'
+			WHEN '05' THEN 'May'
+			WHEN '06' THEN 'June'
+			ELSE  'default'
+			END;

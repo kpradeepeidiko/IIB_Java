@@ -1,0 +1,21 @@
+
+
+Importing file: C:\Users\bandaru\IBM\IntegrationToolkit90\workspace\Multiplication_WSDL\MultiplicationCode.wsdl
+
+Copying source WSDL MultiplicationCode.wsdl to MultiplicationCode.wsdl.
+The WSDL import will proceed with bindings MultiplicationCodeSOAP.
+Creating wsdl schema document for file:///C:/Users/bandaru/IBM/IntegrationToolkit90/workspace/Multiplication_WSDL/MultiplicationCode.wsdl.
+Parsing wsdl binding {http://www.example.org/MultiplicationCode/}MultiplicationCodeSOAP.
+Parsing wsdl binding input Multiplication.
+Parsing wsdl binding output Multiplication.
+Processing doc style for operation Multiplication.
+Populating WSDL schema MultiplicationCode.xsd.
+Creating file MultiplicationCode.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.096 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

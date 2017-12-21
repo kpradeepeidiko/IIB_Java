@@ -1,0 +1,53 @@
+For function
+------------------	
+Input
+---------
+<Emp>
+	<Employee>
+		<ID>111</ID>
+		<EmpName>abc</EmpName>
+	</Employee>
+	<Employee>
+		<ID>200</ID>
+		<EmpName>xyz</EmpName>
+	</Employee>
+	<Employee>
+		<ID>20</ID>
+		<EmpName>ijk</EmpName>
+	</Employee>
+</Emp>
+
+Code
+-------
+	
+	DECLARE res BOOLEAN;
+	DECLARE res1 BOOLEAN;
+	DECLARE alll BOOLEAN;
+	
+	-- The FOR field function evaluates an expression and assigns a resulting value of TRUE, FALSE, or UNKNOWN.
+	SET res = FOR ANY InputBody.Emp.Employee AS I (I.ID <= 111);  --returns false
+	SET OutputRoot.XMLNSC.result.abc = res;
+	
+	SET res1 = FOR ANY InputBody.Emp.Employee AS I (I.ID >= 200); -- returns true
+	SET OutputRoot.XMLNSC.result.abc1 = res1;
+	
+	SET alll = FOR ALL InputBody.Emp.Employee AS I (I.ID <= 10); -- returns false
+	SET OutputRoot.XMLNSC.result.alll = alll;
+
+Output
+---------
+<result>
+ <abc>true</abc>
+ <abc1>false</abc1>
+ <alll>false</alll>
+</result>
+
+=====================================================================================================
+For Statement
+----------------
+	DECLARE i INTEGER 1;
+	FOR A AS Environment.source.folder[] DO
+		CREATE LASTCHILD OF InputRoot.XMLNSC.record.data.folder[i] NAME 'name' VALUE A.field1;
+		CREATE LASTCHILD OF InputRoot.XMLNSC.record.data.folder[i] NAME 'company' VALUE A.field2;
+		SET i = i + 1;
+	END FOR;

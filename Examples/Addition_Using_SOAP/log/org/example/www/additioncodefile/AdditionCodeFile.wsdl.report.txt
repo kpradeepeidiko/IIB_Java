@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\bandaru\IBM\IntegrationToolkit90\workspace\Addition_Using_SOAP\AdditionCodeFile.wsdl
+
+Copying source WSDL AdditionCodeFile.wsdl to AdditionCodeFile.wsdl.
+The WSDL import will proceed with bindings AdditionCodeFileSOAP.
+Creating wsdl schema document for file:///C:/Users/bandaru/IBM/IntegrationToolkit90/workspace/Addition_Using_SOAP/AdditionCodeFile.wsdl.
+Parsing wsdl binding {http://www.example.org/AdditionCodeFile/}AdditionCodeFileSOAP.
+Parsing wsdl binding input Addition.
+Parsing wsdl binding output Addition.
+Processing doc style for operation Addition.
+Populating WSDL schema AdditionCodeFile.xsd.
+Creating file AdditionCodeFile.xsd in the workspace.
+Creating file AdditionCodeFile_InlineSchema1.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.179 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

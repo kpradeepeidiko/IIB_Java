@@ -6,7 +6,7 @@ Operator >
 Operator <
 	The first operand is "less than" the second.
 
-Operator>=
+Operator >=
 	The first operand is "greater than or equal" to the second.
 
 Operator <=

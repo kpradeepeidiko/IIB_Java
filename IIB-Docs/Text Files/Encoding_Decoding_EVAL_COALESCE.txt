@@ -1,0 +1,52 @@
+-------Function BASE64ENCODE() and Function BASE64DECODE()
+		DECLARE original BLOB  '48656c6c6f';
+		
+-------BASE64ENCODE is a function that manipulates all string data types (BIT, BLOB, and CHARACTER)
+		DECLARE encoded CHARACTER BASE64ENCODE(original);
+		
+-------BASE64DECODE is a function that manipulates CHARACTER strings that are base64-encoded, and returns a BLOB string that contains the base64-decoded version of the source string.
+		DECLARE decoded BLOB BASE64DECODE(encoded);
+		
+-------Put into the OutputRoot tree
+		SET OutputRoot.XMLNSC.result.original = original;
+		SET OutputRoot.XMLNSC.result.encoded = encoded;
+		SET OutputRoot.XMLNSC.result.decoded = decoded;
+		
+Output:
+---------
+<result>
+ <original>48656c6c6f</original>
+ <encoded>SGVsbG8=</encoded>
+ <decoded>48656c6c6f</decoded>
+</result>
+====================================================================================================
+-------The EVAL function takes a character value and interprets that value as an ESQL expression that returns a value
+		DECLARE a INTEGER 100;
+		DECLARE b INTEGER 200;
+		DECLARE operatorAsString CHARACTER '+';
+		SET OutputRoot.XMLNSC.result.EVAL.Result = EVAL('a' || operatorAsString || 'b');
+		
+Output:
+-----------
+<result>
+ <EVAL>
+  <Result>300</Result>
+ </EVAL>
+</result>
+=======================================================================================================
+-------Function COALESCE is a miscellaneous function that lets you provide default values for fields
+-- Returns field value if the field exists otherwise the specified value in the COALESCE function
+		SET OutputRoot.XMLNSC.result.emp.eid = InputRoot.XMLNSC.emp.eid;
+		SET OutputRoot.XMLNSC.result.emp.ename = InputRoot.XMLNSC.emp.ename;
+		DECLARE coalesceSalFlag INTEGER;
+		DECLARE coalesceAgeFlag INTEGER;
+					-------Setting the Sal value as default as 1000
+			SET coalesceSalFlag = COALESCE(InputRoot.XMLNSC.emp.sal, 100);		-- returns 10000 since the field sal exists in the Input.
+			SET coalesceAgeFlag = COALESCE(InputRoot.XMLNSC.emp.age, 25);			-- returns 25 since the field age does not exists in the input.
+			SET OutputRoot.XMLNSC.result.emp.coalsceSalFlag = coalesceSalFlag;
+			SET OutputRoot.XMLNSC.result.emp.coalsceAgeFlag = coalesceAgeFlag;
+			SET OutputRoot.XMLNSC.result.emp.age = InputRoot.XMLNSC.emp.age;  --returns 25 since the default value is changed
+			SET OutputRoot.XMLNSC.result.emp.sal = InputRoot.XMLNSC.emp.sal;  --returns 10000 since the default value is not changed.
+		
+		
+		SET OutputRoot.XMLNSC.result.emp.city = InputRoot.XMLNSC.emp.city;

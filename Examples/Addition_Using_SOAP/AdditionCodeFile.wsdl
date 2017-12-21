@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="AdditionCodeFile" targetNamespace="http://www.example.org/AdditionCodeFile/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/AdditionCodeFile/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="AdditionCodeFile_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="AdditionCodeFileSOAP" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/AdditionCodeFile/">
+<xsd:include schemaLocation="AdditionCodeFile_InlineSchema1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AdditionRequest">
+    <wsdl:part element="tns:Addition" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AdditionResponse">
+    <wsdl:part element="tns:AdditionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="AdditionCodeFile">
+    <wsdl:operation name="Addition">
+      <wsdl:input message="tns:AdditionRequest"/>
+      <wsdl:output message="tns:AdditionResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdditionCodeFileSOAP" type="tns:AdditionCodeFile">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Addition">
+      <soap:operation soapAction="http://www.example.org/AdditionCodeFile/Addition"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdditionCodeFile">
+    <wsdl:port binding="tns:AdditionCodeFileSOAP" name="AdditionCodeFileSOAP">
+      <soap:address location="http://localhost:7800/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

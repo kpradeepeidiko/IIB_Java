@@ -1,15 +1,15 @@
 Datatypes
 ================
-1) Boolean		=> True, False, Unknown
+1) Boolean	=> True, False, Unknown
 
 2) DateTime
 
-3) Null			=> All ESQL data types (except REFERENCE) support the concept of the "null" value.
+3) Null		=> All ESQL data types (except REFERENCE) support the concept of the "null" value.
 
-4) Numeric 		=> Decimal, Float, Integer.
+4) Numeric 	=> Decimal, Float, Integer.
 
 5) Reference	=> The REFERENCE data type holds the location of a field in a message. It cannot hold the location of a constant, a database table, a database column, or another reference.
 
-6) String 		=> Bit (The BIT data type holds a variable length string of binary digits. Ex: B'0100101001'), 
-				   Blob (The BLOB data type holds a variable length string of 8-bit bytes. Ex: X'0123456789ABCDEF'), 
-				   Character
+6) String 	=> Bit (The BIT data type holds a variable length string of binary digits. Ex: B'0100101001'), 
+		   Blob (The BLOB data type holds a variable length string of 8-bit bytes. Ex: X'0123456789ABCDEF'), 
+		   Character

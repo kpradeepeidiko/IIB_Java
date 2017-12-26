@@ -1,0 +1,19 @@
+CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE messageText CHARACTER;
+		DECLARE pE reference to InputExceptionList.*[1];
+		DECLARE i INTEGER;	
+		WHILE LASTMOVE(pE) DO
+			IF pE.Number is not null THEN
+				SET messageText = pE.Text;
+				SET OutputRoot.XMLNSC.msg.res = messageText;
+			end if;
+			move pE lastchild;
+			if pE.Type is not null then
+				set messageText = pE.Text;
+				set i = LENGTH(messageText);
+				if (i > 5) then
+				set OutputRoot.XMLNSC.msg.res = messageText;
+				end if;
+			end if;
+		END WHILE; 
+	END;

@@ -1,0 +1,40 @@
+Creating a User
+----------------
+CREATE USER <user_name> IDENTIFIED BY <Password>;
+
+=======================================================================================================
+The Grant Statement
+--------------------
+CONNECT role: GRANT CONNECT TO <user_name>;
+
+RESOURCE role & DBA role : GRANT CONNECT, RESOURCE, DBA TO <user_name>;
+
+GRANT TABLESPACE: GRANT UNLIMITED TABLESPACE TO <user_name>;
+
+Assigning Privileges: GRANT CREATE SESSION GRANT ANY PRIVILEGE TO <user_name>;
+
+Table Privileges: GRANT
+					SELECT,
+					INSERT,
+					UPDATE,
+					DELETE
+					ON
+						schema.books
+					TO
+					<user_name>;	
+
+					
+All Privileges: GRANT ALL PRIVILEGE TO <user_name>;
+
+=======================================================================================
+List Users
+----------------
+select * from dba_users;
+(or)
+
+select username from dba_users;
+(or)
+
+select * from all_users
+
+================================================================================================

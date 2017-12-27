@@ -1,0 +1,86 @@
+input:
+--------
+<P>
+	<S>
+		<H>Apple</H>
+		<H>Orange</H>
+		<H>Banana</H>
+		<H>Pine Apple</H>
+	</S>
+</P>
+
+
+Code:
+-------
+package com.esb;
+
+import com.ibm.broker.javacompute.MbJavaComputeNode;
+import com.ibm.broker.plugin.MbElement;
+import com.ibm.broker.plugin.MbException;
+import com.ibm.broker.plugin.MbMessage;
+import com.ibm.broker.plugin.MbMessageAssembly;
+import com.ibm.broker.plugin.MbOutputTerminal;
+import com.ibm.broker.plugin.MbUserException;
+import com.ibm.broker.plugin.MbXMLNSC;
+
+public class JavaExample extends MbJavaComputeNode {
+
+	public void evaluate(MbMessageAssembly inAssembly) throws MbException {
+		MbOutputTerminal out = getOutputTerminal("out");
+		//MbOutputTerminal alt = getOutputTerminal("alternate");
+
+		MbMessage inMessage = inAssembly.getMessage();
+		MbMessageAssembly outAssembly = null;
+		try {
+			// create new message as a copy of the input
+			MbMessage outMessage = new MbMessage(inMessage);
+			
+			// ----------------------------------------------------------
+			// Add user code below
+             MbElement element = outMessage.getRootElement().getLastChild().getFirstChild().getFirstChild();
+             
+             String H1 = element.getFirstChild().getValueAsString();
+             String H2 = element.getFirstChild().getNextSibling().getValueAsString();
+             String H3 = element.getFirstChild().getNextSibling().getNextSibling().getValueAsString();
+             String H4 = element. getFirstChild().getNextSibling().getNextSibling().getNextSibling().getValueAsString();
+             
+             MbElement outData = outMessage.getRootElement().createElementAsLastChild(MbXMLNSC.PARSER_NAME);
+             MbElement outData1 = outData.createElementAsLastChild(MbXMLNSC.FOLDER, "Result", null);
+             MbElement outData2 = outData1.createElementAsLastChild(MbXMLNSC.FIELD, "R1", H1);
+             MbElement outData3 = outData1.createElementAsLastChild(MbXMLNSC.FIELD, "R2", H2);
+             MbElement outData4 = outData1.createElementAsLastChild(MbXMLNSC.FIELD, "R3", H3);
+             MbElement outData5 = outData1.createElementAsLastChild(MbXMLNSC.FIELD, "R4", H4);
+             outAssembly = new MbMessageAssembly(inAssembly, outMessage);
+             
+			// End of user code
+			// ----------------------------------------------------------
+		} catch (MbException e) {
+			// Re-throw to allow Broker handling of MbException
+			throw e;
+		} catch (RuntimeException e) {
+			// Re-throw to allow Broker handling of RuntimeException
+			throw e;
+		} catch (Exception e) {
+			// Consider replacing Exception with type(s) thrown by user code
+			// Example handling ensures all exceptions are re-thrown to be handled in the flow
+			throw new MbUserException(this, "evaluate()", "", "", e.toString(),
+					null);
+		}
+		// The following should only be changed
+		// if not propagating message to the 'out' terminal
+		outAssembly.getMessage().getRootElement().getLastChild().getPreviousSibling().delete();
+		out.propagate(outAssembly);
+
+	}
+
+}
+
+
+Output:
+-----------
+<Result>
+ <R1>Apple</R1>
+ <R2>Orange</R2>
+ <R3>Banana</R3>
+ <R4>Pine Apple</R4>
+</Result>

@@ -1,0 +1,28 @@
+CREATE COMPUTE MODULE DB_ops_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		--INSERT INTO Database.pradeep.CUSTOMERS VALUES(4,'Robin','Uthappa');
+		--SET OutputRoot.XMLNSC.msg = 'record inserted successfully';
+		-- SET OutputRoot.XML.Test.Result[] = (SELECT C.Column1 AS Column_Id, C.Column2 AS Column_Name, C.Column3 AS City FROM Database.pradeep.CUSTOMERS AS C);
+		DECLARE DB ROW;
+		SET DB.values[] = (SELECT C.customer_id AS Column_Id, C.customer_name AS Column_Name, C.city AS City FROM Database.pradeep.CUSTOMERS AS C);
+		SET OutputRoot.XML.Test.Result = DB.values;
+		DECLARE i INTEGER;
+	END;
+END MODULE;

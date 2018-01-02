@@ -18,11 +18,18 @@ CREATE COMPUTE MODULE DB_ops_Compute
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
 		--INSERT INTO Database.pradeep.CUSTOMERS VALUES(4,'Robin','Uthappa');
-		--SET OutputRoot.XMLNSC.msg = 'record inserted successfully';
-		-- SET OutputRoot.XML.Test.Result[] = (SELECT C.Column1 AS Column_Id, C.Column2 AS Column_Name, C.Column3 AS City FROM Database.pradeep.CUSTOMERS AS C);
+		--UPDATE Database.pradeep.CUSTOMERS AS C SET city='Australia' WHERE C.customer_id=3;
+		--SET OutputRoot.XMLNSC.msg = 'record updated successfully';
+		
 		DECLARE DB ROW;
-		SET DB.values[] = (SELECT C.customer_id AS Column_Id, C.customer_name AS Column_Name, C.city AS City FROM Database.pradeep.CUSTOMERS AS C);
-		SET OutputRoot.XML.Test.Result = DB.values;
-		DECLARE i INTEGER;
+		--SET DB.data[] = (SELECT C.customer_id AS Column_Id, C.customer_name AS Column_Name, C.city AS City FROM Database.pradeep.CUSTOMERS AS C);
+		SET DB.data[] = PASSTHRU('SELECT * FROM pradeep.CUSTOMERS');
+		DECLARE dbRef REFERENCE TO DB;
+		DECLARE outDbRef REFERENCE TO OutputRoot.XMLNSC;
+		CREATE FIRSTCHILD OF OutputRoot.XMLNSC AS outDbRef NAME 'DBValues';
+		WHILE LASTMOVE(dbRef) DO
+			SET outDbRef = dbRef;
+			MOVE dbRef NEXTSIBLING;	
+		END WHILE;
 	END;
 END MODULE;

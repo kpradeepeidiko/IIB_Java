@@ -3,6 +3,7 @@
 	<name>Database_OP</name>
 	<comment></comment>
 	<projects>
+		<project>Database_OPJava</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

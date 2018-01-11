@@ -1,0 +1,42 @@
+CREATE COMPUTE MODULE Convert_FL_To_XML
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE refH REFERENCE TO InputRoot.DFDL.FLFormat.header;
+		DECLARE refB REFERENCE TO InputRoot.DFDL.FLFormat.body[>];
+		DECLARE outRef, outRef1 REFERENCE TO OutputRoot.XMLNSC;
+		CREATE FIRSTCHILD OF OutputRoot.XMLNSC AS outRef NAME 'Result';
+		SET outRef.Header.Number = refH.NUMBER;
+		SET outRef.Header.Surname = refH.SURNAME;
+		SET outRef.Header.Forename = refH.FORENAME;
+		SET outRef.Header.Year = refH.YEAR;
+		SET outRef.Header.Form = refH.FORM;
+		SET outRef.Header.DateOfBirth = refH.DOB;
+		
+		WHILE LASTMOVE(refB) DO
+			CREATE LASTCHILD OF outRef AS outRef1 Name 'Body';
+			SET outRef1.Number = refB.body_elem1;
+			SET outRef1.Surname = refB.body_elem2;
+			SET outRef1.Forename = refB.body_elem3;
+			SET outRef1.Year = refB.body_elem4;
+			SET outRef1.Form = refB.body_elem5;
+			SET outRef1.DOB = refB.body_elem6;
+			MOVE refB NEXTSIBLING;
+		END WHILE; 
+	END;
+END MODULE;

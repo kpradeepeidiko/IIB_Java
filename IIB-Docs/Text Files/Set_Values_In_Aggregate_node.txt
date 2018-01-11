@@ -1,0 +1,8 @@
+DECLARE inRoot REFERENCE TO InputRoot.ComIbmAggregateReplyBody.Aggregate_Request;
+		DECLARE outRoot,outRoot1 REFERENCE TO OutputRoot.XMLNSC;
+		CREATE LASTCHILD OF OutputRoot.XMLNSC AS outRoot NAME 'Result';
+		WHILE LASTMOVE(inRoot) DO
+			CREATE LASTCHILD OF outRoot AS outRoot1 NAME 'Message';
+			SET outRoot1.Values = inRoot.XMLNSC.Software;
+			MOVE inRoot NEXTSIBLING;
+		END WHILE;

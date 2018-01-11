@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format byteOrder="{$dfdl:byteOrder}" encoding="{$dfdl:encoding}" escapeSchemeRef="recSepFieldsFmt:RecordEscapeScheme" occursCountKind="fixed" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element ibmSchExtn:docRoot="true" name="FLFormat">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="%CR;%LF;">
+				<xsd:element name="header">
+					<xsd:complexType>
+						<xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="trailingEmpty">
+							<xsd:element dfdl:length="7" dfdl:lengthKind="explicit" dfdl:textPadKind="padChar" ibmDfdlExtn:sampleValue="head_value1" name="NUMBER" type="xsd:string"/>
+							<xsd:element dfdl:length="15" dfdl:lengthKind="explicit" dfdl:textPadKind="padChar" ibmDfdlExtn:sampleValue="head_value2" name="SURNAME" type="xsd:string"/>
+							<xsd:element dfdl:length="15" dfdl:lengthKind="explicit" dfdl:textPadKind="padChar" ibmDfdlExtn:sampleValue="head_value3" name="FORENAME" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" dfdl:textPadKind="padChar" ibmDfdlExtn:sampleValue="head_value4" name="YEAR" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" dfdl:textPadKind="padChar" ibmDfdlExtn:sampleValue="head_value5" name="FORM" type="xsd:string"/>
+                            <xsd:element dfdl:length="8" dfdl:lengthKind="explicit" dfdl:textPadKind="padChar" ibmDfdlExtn:sampleValue="head_value6" name="DOB" type="xsd:string"/>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element dfdl:occursCountKind="implicit" maxOccurs="unbounded" name="body">
+					<xsd:complexType>
+						<xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="trailingEmpty">
+							<xsd:element dfdl:length="7" dfdl:lengthKind="explicit" ibmDfdlExtn:sampleValue="body_value1" name="body_elem1" type="xsd:string"/>
+							<xsd:element dfdl:length="15" dfdl:lengthKind="explicit" ibmDfdlExtn:sampleValue="body_value2" name="body_elem2" type="xsd:string"/>
+							<xsd:element dfdl:length="15" dfdl:lengthKind="explicit" ibmDfdlExtn:sampleValue="body_value3" name="body_elem3" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" ibmDfdlExtn:sampleValue="body_value4" name="body_elem4" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthKind="explicit" ibmDfdlExtn:sampleValue="body_value5" name="body_elem5" type="xsd:string"/>
+                            <xsd:element dfdl:length="8" dfdl:lengthKind="explicit" ibmDfdlExtn:sampleValue="body_value6" name="body_elem6" type="xsd:string"/>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

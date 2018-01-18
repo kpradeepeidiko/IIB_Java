@@ -64,7 +64,9 @@ mqsistopmsgflow <BrokerName> -e <ExecutionGroupName>
 mqsistartmsgflow <BrokerName> -e <ExecutionGroupName> -k <application name> -m <flowName>
 mqsistopmsgflow <BrokerName> -e <ExecutionGroupName> -k <applicationName> -m <FlowName>
 
-
+15)Delete broker:
+-------------------
+mqsideletebroker <BrokerName>
 
 ----------------------------------------------------------*****************************---------------------------------------------------------
 ================================================================================================================================================

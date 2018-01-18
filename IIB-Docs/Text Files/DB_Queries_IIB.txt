@@ -1,0 +1,14 @@
+INSERT INTO Database.pradeep.CUSTOMERS VALUES(4,'Robin','Uthappa');
+=======================================================================================
+UPDATE Database.pradeep.CUSTOMERS AS C SET city='Australia' WHERE C.customer_id=3;
+=========================================================================================
+
+
+SET DB.data[] = PASSTHRU('SELECT * FROM pradeep.CUSTOMERS');
+
+SET DB.data[] = (SELECT C.customer_id AS Column_Id, C.customer_name AS Column_Name, 
+					C.city AS City FROM Database.pradeep.CUSTOMERS AS C);
+
+=============================================================================================================
+
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://www.eclipse.org/emf/2002/Ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="EPackage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="eClassifiers">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="eSuperTypes">
+                <xsd:complexType>
+                  <xsd:attribute name="href" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="translation">
+                <xsd:complexType>
+                  <xsd:attribute name="bundleName" type="xsd:string"/>
+                  <xsd:attribute name="pluginId" type="xsd:string"/>
+                  <xsd:attribute name="key" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="colorGraphic16">
+                <xsd:complexType>
+                  <xsd:attribute name="resourceName" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="colorGraphic32">
+                <xsd:complexType>
+                  <xsd:attribute name="resourceName" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="composition">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" name="nodes">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="translation">
+                            <xsd:complexType>
+                              <xsd:attribute name="string" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="httpVersion" type="xsd:string"/>
+                        <xsd:attribute name="messageDomainProperty" type="xsd:string"/>
+                        <xsd:attribute name="location" type="xsd:string"/>
+                        <xsd:attribute name="mappingExpression" type="xsd:string"/>
+                        <xsd:attribute name="protocol" type="xsd:string"/>
+                        <xsd:attribute name="URLSpecifier" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element maxOccurs="unbounded" name="connections">
+                      <xsd:complexType>
+                        <xsd:attribute name="sourceTerminalName" type="xsd:string"/>
+                        <xsd:attribute name="targetNode" type="xsd:string"/>
+                        <xsd:attribute name="targetTerminalName" type="xsd:string"/>
+                        <xsd:attribute name="sourceNode" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="propertyOrganizer">
+                <xsd:complexType/>
+              </xsd:element>
+              <xsd:element name="stickyBoard">
+                <xsd:complexType/>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="nsURI" type="xsd:string"/>
+      <xsd:attribute name="nsPrefix" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

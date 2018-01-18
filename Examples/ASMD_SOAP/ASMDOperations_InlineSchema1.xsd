@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://localhost:7800/ASMDOperations/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost:7800/ASMDOperations/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                                                                <xsd:element ibmSchExtn:docRoot="true" name="Addition">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="input1" type="xsd:string"/>
+          	<xsd:element name="input2" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element ibmSchExtn:docRoot="true" name="AdditionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="additionOut" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element name="Substraction">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="input1" type="xsd:string"/>
+      			<xsd:element name="input2" type="xsd:string"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+            <xsd:element name="SubstractionResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="substractionOut" type="xsd:string"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+            <xsd:element name="Multiplication">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="input1" type="xsd:string"/>
+      			<xsd:element name="input2" type="xsd:string"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+            <xsd:element name="MultiplicationResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="multiplicationOut" type="xsd:string"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+            <xsd:element name="Division">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="input1" type="xsd:string"/>
+      			<xsd:element name="input2" type="xsd:string"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+            <xsd:element name="DivisionResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="divisionOut" type="xsd:string"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+        </xsd:schema>

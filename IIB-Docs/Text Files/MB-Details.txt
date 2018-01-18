@@ -1,0 +1,14 @@
+QueueManager	ESBQMDEV
+Broker		ESBBRKRDEV
+
+
+ikeycmd -keydb -create -db C:\IBM\MQSI\config\ESBBRKRDEVkeystore.jks -pw sarasu10 -type jks
+ikeycmd -keydb -create -db C:\IBM\MQSI\config\ESBBRKRDEVtruststore.jks -pw sarasu10 -type jks
+ikeycmd -cert -create -db C:\IBM\MQSI\config\ESBBRKRDEVkeystore.jks -pw sarasu10 -label ESBBRKRDEVCert -dn "CN=ESBBRKRDEV.Eidiko.Server,O=Eidiko Systems,OU=OffShore,L=Hyderabad,C=IN"
+
+mqsireportproperties ESBBRKRDEV -o BrokerRegistry -r
+mqsichangeproperties ESBBRKRDEV -o BrokerRegistry -n brokerKeystoreFile -v C:\IBM\MQSI\config\ESBBRKRDEVkeystore.jks
+mqsichangeproperties ESBBRKRDEV -o BrokerRegistry -n brokerTruststoreFile -v C:\IBM\MQSI\config\ESBBRKRDEVtruststore.jks 
+
+mqsisetdbparms ESBBRKRDEV -n brokerKeystore::password -u ignore -p sarasu10
+mqsisetdbparms ESBBRKRDEV -n brokerTruststore::password -u ignore -p sarasu10

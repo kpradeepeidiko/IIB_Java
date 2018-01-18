@@ -1,0 +1,30 @@
+
+
+Importing file: C:\Users\bandaru\IBM\IntegrationToolkit90\workspace\ASMD_SOAP\ASMDOperations.wsdl
+
+Copying source WSDL ASMDOperations.wsdl to ASMDOperations.wsdl.
+The WSDL import will proceed with bindings ASMDOperationsSOAP.
+Creating wsdl schema document for file:///C:/Users/bandaru/IBM/IntegrationToolkit90/workspace/ASMD_SOAP/ASMDOperations.wsdl.
+Parsing wsdl binding {http://localhost:7800/ASMDOperations/}ASMDOperationsSOAP.
+Parsing wsdl binding input Addition.
+Parsing wsdl binding output Addition.
+Parsing wsdl binding input Substraction.
+Parsing wsdl binding output Substraction.
+Parsing wsdl binding input Multiplication.
+Parsing wsdl binding output Multiplication.
+Parsing wsdl binding input Division.
+Parsing wsdl binding output Division.
+Processing doc style for operation Addition.
+Processing doc style for operation Substraction.
+Processing doc style for operation Multiplication.
+Processing doc style for operation Division.
+Populating WSDL schema ASMDOperations.xsd.
+Creating file ASMDOperations.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.179 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

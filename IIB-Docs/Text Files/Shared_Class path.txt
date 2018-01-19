@@ -1,0 +1,1 @@
+C:\ProgramData\IBM\MQSI\shared-classes

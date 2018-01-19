@@ -1,0 +1,18 @@
+
+
+CREATE COMPUTE MODULE rsa_encryption_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE chrData,chrEncryptedData CHARACTER;
+		SET chrData = InputRoot.XMLNSC.Data.Name;
+		-- SET chrData = '';
+		DECLARE chrKey CHARACTER 'A';
+		CALL procEncryptGI(chrData) INTO chrEncryptedData;
+		SET OutputRoot.XMLNSC.Message.Encrypted = chrEncryptedData;
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE PROCEDURE procEncryptGI(IN chrInen CHARACTER) RETURNS CHARACTER
+LANGUAGE JAVA
+EXTERNAL NAME "enc.RSAEncryp.main2";

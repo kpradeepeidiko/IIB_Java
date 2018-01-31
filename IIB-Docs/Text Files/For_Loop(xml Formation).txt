@@ -1,0 +1,94 @@
+Input:
+------
+<Employees>
+	<Employee>
+		<Id>1</Id>
+		<Name>Pradeep_k</Name>
+		<Designation>ASE</Designation>
+	</Employee>
+	<Employee>
+		<Id>1</Id>
+		<Name>Pradeep_k</Name>
+		<Designation>ASE</Designation>
+	</Employee>
+	<Employee>
+		<Id>2</Id>
+		<Name>Ravi</Name>
+		<Designation>ASE</Designation>
+	</Employee>
+	<Employee>
+		<Id>2</Id>
+		<Name>Ravi</Name>
+		<Designation>ASE</Designation>
+	</Employee>
+	<Employee>
+		<Id>3</Id>
+		<Name>Harish</Name>
+		<Designation>ASE</Designation>
+	</Employee>
+</Employees>
+
+
+ESQL Code:
+-----------
+CREATE PROCEDURE UsingForLoopToFormXML() BEGIN
+		DECLARE i INTEGER 1;
+		DECLARE myData1 CHARACTER;
+		DECLARE myData2 CHARACTER;
+		DECLARE myData3 CHARACTER;
+		
+		FOR inData AS InputRoot.XMLNSC.Employees.Employee[] DO
+			SET myData1 = inData.Id;
+			SET myData2 = inData.Name;
+			SET myData3 = inData.Designation;
+			CREATE FIRSTCHILD OF OutputRoot.XMLNSC.EMP NAME 'Emp_Record';
+			CREATE FIRSTCHILD OF OutputRoot.XMLNSC.EMP.Emp_Record NAME 'Des' VALUE myData3;
+			CREATE FIRSTCHILD OF OutputRoot.XMLNSC.EMP.Emp_Record NAME 'Name' VALUE myData2;
+			CREATE FIRSTCHILD OF OutputRoot.XMLNSC.EMP.Emp_Record NAME 'Id' VALUE myData1;
+			SET i = i + 1;
+		END FOR;
+	END;
+	
+	
+(OR)
+
+	CREATE PROCEDURE FormXMLDataUsingForLoop() BEGIN
+		DECLARE i INTEGER 1; 
+		FOR inData AS InputRoot.XMLNSC.Employees.Employee[] DO
+		 	SET Environment.XMLNSC.ORIGINALCONT.DETAILS = inData; 
+		 	SET OutputRoot.XMLNSC.EMP.Emp_Record[i] = inData;
+			SET i = i + 1;
+		END FOR;
+	END;
+	
+
+	
+Output:
+--------
+<EMP>
+	<Emp_Record>
+		<Id>3</Id>
+		<Name>Harish</Name>
+		<Des>ASE</Des>
+	</Emp_Record>
+	<Emp_Record>
+		<Id>2</Id>
+		<Name>Ravi</Name>
+		<Des>ASE</Des>
+	</Emp_Record>
+	<Emp_Record>
+		<Id>2</Id>
+		<Name>Ravi</Name>
+		<Des>ASE</Des>
+	</Emp_Record>
+	<Emp_Record>
+		<Id>1</Id>
+		<Name>Pradeep_k</Name>
+		<Des>ASE</Des>
+	</Emp_Record>
+	<Emp_Record>
+		<Id>1</Id>
+		<Name>Pradeep_k</Name>
+		<Des>ASE</Des>
+		</Emp_Record>
+</EMP>

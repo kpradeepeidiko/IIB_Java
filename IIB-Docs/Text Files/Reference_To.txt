@@ -1,18 +1,18 @@
 DECLARE refH REFERENCE TO InputRoot.DFDL.CSVMesg.header;
-		DECLARE refR REFERENCE TO InputRoot.DFDL.CSVMesg.record[>];
+DECLARE refR REFERENCE TO InputRoot.DFDL.CSVMesg.record[>];
 				
-		DECLARE outRef,outRef1 REFERENCE TO OutputRoot.XMLNSC;
-		
-		CREATE LASTCHILD OF OutputRoot.XMLNSC AS outRef NAME 'Result';
-		
-		SET outRef.Header.FirstName = refH.First_Name;
-		SET outRef.Header.MiddleName = refH.Middle_name;
-		SET outRef.Header.LastName = refH.Last_Name;
-		
-		WHILE LASTMOVE(refR) DO
-			CREATE LASTCHILD OF outRef AS outRef1 NAME 'Record';
-			SET outRef1.FN = refR.field1;
-			SET outRef1.MN = refR.field2;
-			SET outRef1.LN = refR.field3;
-			MOVE refR NEXTSIBLING;
-		END WHILE;
+DECLARE outRef,outRef1 REFERENCE TO OutputRoot.XMLNSC;
+	
+CREATE LASTCHILD OF OutputRoot.XMLNSC AS outRef NAME 'Result';
+
+SET outRef.Header.FirstName = refH.First_Name;
+SET outRef.Header.MiddleName = refH.Middle_name;
+SET outRef.Header.LastName = refH.Last_Name;
+	
+WHILE LASTMOVE(refR) DO
+	CREATE LASTCHILD OF outRef AS outRef1 NAME 'Record';
+	SET outRef1.FN = refR.field1;
+	SET outRef1.MN = refR.field2;
+	SET outRef1.LN = refR.field3;
+	MOVE refR NEXTSIBLING;
+END WHILE;

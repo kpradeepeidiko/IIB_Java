@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.4.0" xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="default">
+    <input path="/Mapping_File/Special_Char.xsd"/>
+    <output path="/Mapping_File/Special_Char.xsd"/>
+    <namespaces>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="Test_Mapping_Node_Mapping">
+        <input path="mb:msg(Emp,assembly,XMLNSC,Properties)"/>
+        <output path="mb:msg(Emp,assembly,XMLNSC,Properties)"/>
+        <move>
+            <input path="Properties"/>
+            <output path="Properties"/>
+        </move>
+        <function ref="fn:replace">
+            <input path="Emp/Name" var="Name"/>
+            <output path="Emp/Name"/>
+            <param name="input" value="$Name"/>
+            <param name="pattern" value="'vbfvhb'"/>
+            <param name="replacement" value="'Pradeep_K'"/>
+        </function>
+    </mappingDeclaration>
+</mappingRoot>

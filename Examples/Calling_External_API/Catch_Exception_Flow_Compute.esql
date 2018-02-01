@@ -1,6 +1,6 @@
 
 
-CREATE COMPUTE MODULE Catch_Exception_Compute
+CREATE COMPUTE MODULE Catch_Exception_Flow_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
@@ -19,6 +19,7 @@ CREATE COMPUTE MODULE Catch_Exception_Compute
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		--SET OutputRoot = InputRoot;
 		DECLARE messageText CHARACTER;
 		DECLARE pE reference to InputExceptionList.*[1];
 		DECLARE i INTEGER;	
@@ -32,7 +33,7 @@ CREATE COMPUTE MODULE Catch_Exception_Compute
 				set messageText = pE.Text;
 				set i = LENGTH(messageText);
 				if (i > 5) then
-				set OutputRoot.XMLNSC.msg.res = messageText;
+					set OutputRoot.XMLNSC.msg.res = messageText;
 				end if;
 			end if;
 		END WHILE; 

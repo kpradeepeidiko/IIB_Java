@@ -1,6 +1,6 @@
 
 
-CREATE COMPUTE MODULE Transform_To_Output
+CREATE COMPUTE MODULE Set_Corrtn_ID
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
@@ -19,6 +19,7 @@ CREATE COMPUTE MODULE Transform_To_Output
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		Set OutputRoot.JSON.Data.Result = InputRoot.JSON.Data;
+		SET OutputRoot = InputRoot;
+		SET OutputRoot.MQMD.CorrelId = x'000000000000000000000000000000000000000000000001';
 	END;
 END MODULE;

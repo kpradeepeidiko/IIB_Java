@@ -1,6 +1,6 @@
 
 
-CREATE COMPUTE MODULE Transform_To_Output
+CREATE COMPUTE MODULE Set_Final_Response
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
@@ -19,6 +19,9 @@ CREATE COMPUTE MODULE Transform_To_Output
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		Set OutputRoot.JSON.Data.Result = InputRoot.JSON.Data;
+		DECLARE i INTEGER;		
+		SET OutputRoot.JSON.Data.Response.Personal_Details = InputRoot.ComIbmAggregateReplyBody.Aggr_Req[1].JSON.Data.Personal_Details;
+		SET OutputRoot.JSON.Data.Response.Rooms_Details = InputRoot.ComIbmAggregateReplyBody.Aggr_Req[2].JSON.Data.Rooms_Details;
+		DECLARE i1 INTEGER;
 	END;
 END MODULE;

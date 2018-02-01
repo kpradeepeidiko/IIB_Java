@@ -17,8 +17,14 @@ CREATE COMPUTE MODULE Get_Input_Values
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		SET OutputRoot = InputRoot;
-		SET OutputRoot.HTTPRequestHeader."Authorization" = 'Bearer ZjNmOTYxOWItMTNiZi00ZGI2LWFmMzEtNmNjYWVkZjQ2NjAyMjJjYzkzZjEtNjU2';
+		-------------------------- Set headers --------------------------
+		SET OutputRoot.HTTPRequestHeader."Authorization" = 'Bearer NTk4ZjA2ZmQtN2FiYy00ZTgwLTgzNmMtYjVlMzc4NGFkMzhiZDY0ZDIzM2MtZGQw';
 		SET OutputRoot.HTTPRequestHeader."Content-Type" = 'application/json';
+		
+		
+		-------------------- Set message body -------------------------------
+		SET OutputRoot.JSON.Data.markdown = 'Hi Hello \n - through IIB';
+		SET OutputRoot.JSON.Data.toPersonEmail = 'harish.eidiko@gmail.com';
+		
 	END;
 END MODULE;

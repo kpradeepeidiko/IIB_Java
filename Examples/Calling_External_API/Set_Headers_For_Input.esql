@@ -1,6 +1,6 @@
 
 
-CREATE COMPUTE MODULE Transform_To_Output
+CREATE COMPUTE MODULE Set_Headers_For_Input
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
@@ -19,6 +19,7 @@ CREATE COMPUTE MODULE Transform_To_Output
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		Set OutputRoot.JSON.Data.Result = InputRoot.JSON.Data;
+		SET OutputRoot.HTTPRequestHeader."Authorization" = 'Bearer OWNhZDAxMjAtOTU1ZS00NjAzLWFlOTEtM2Q2NzZmNjdjYWIyYjJmMDk0NGItNWI4';
+		SET OutputRoot.HTTPRequestHeader."Content-Type" = 'application/json';
 	END;
 END MODULE;

@@ -1,6 +1,6 @@
 
 
-CREATE COMPUTE MODULE Transform_To_Output
+CREATE COMPUTE MODULE Set_Rooms_Details
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
@@ -19,6 +19,6 @@ CREATE COMPUTE MODULE Transform_To_Output
 	END;
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
-		Set OutputRoot.JSON.Data.Result = InputRoot.JSON.Data;
+		SET OutputRoot.JSON.Data.Rooms_Details = InputRoot.JSON.Data;
 	END;
 END MODULE;

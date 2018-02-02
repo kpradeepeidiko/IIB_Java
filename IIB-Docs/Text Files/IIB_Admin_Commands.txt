@@ -72,30 +72,36 @@ mqsideletebroker <BrokerName>
 ================================================================================================================================================
 
 1)To change the broker wide listeners PORT for http messages:
----------------------------------------------------------
+---------------------------------------------------------------
 mqsichangeproperties <BrokerName> -b httplistener -o HTTPConnector -n port -v <Some Port(3483)>
 
 2)To view the properties for broker wide listeners:
 -----------------------------------------------------
 mqsireportproperties <BrokerName> -b httplistener -o HTTPConnector -r
 
-3)Broker-wide listener properties that apply to HTTP and HTTPS messages are controlled by the HTTPListener object.
+3) To view the HTTP/HTTPS properties for the execution group
+--------------------------------------------------------------
+mqsireportproperties <BrokerName> -e <Execution_Group_Name> -o HTTPConnector -r
+mqsireportproperties <BrokerName> -e <Execution_Group_Name> -o HTTPSConnector -r
+
+
+4)Broker-wide listener properties that apply to HTTP and HTTPS messages are controlled by the HTTPListener object.
  Disable the broker-wide listener for <myBroker>:(Then it will listen the execution level port):
- -----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
  mqsichangeproperties <BrokerName> -b httplistener -o HTTPListener -n startListener -v false
  
- 4)Backup the broker:
- ----------------------
+5)Backup the broker:
+----------------------
  mqsibackupbroker <BrokerName> -d <path> -a <BackupName.zip>
  
 then delete that broker(eg:BRKR):
 
-5)Restore the Broker:
+6)Restore the Broker:
 -----------------------
 step 1)create the broker with same queue manager
 step 2) stop the broker
 step 3)mqsirestorebroker <BrokerName> -d <path> -a <BackupFile.zip>
- Then it will Restore.
+Then it will Restore.
  
- ==============================================================THE END=============================================================
+===============================================THE END====================================================
 

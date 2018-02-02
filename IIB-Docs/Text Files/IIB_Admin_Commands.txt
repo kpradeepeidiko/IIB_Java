@@ -60,7 +60,6 @@ mqsistopmsgflow <BrokerName> -e <ExecutionGroupName>
 
 14)start and stop the message flow :
 --------------------------------------
-
 mqsistartmsgflow <BrokerName> -e <ExecutionGroupName> -k <application name> -m <flowName>
 mqsistopmsgflow <BrokerName> -e <ExecutionGroupName> -k <applicationName> -m <FlowName>
 
@@ -93,8 +92,7 @@ mqsireportproperties <BrokerName> -e <Execution_Group_Name> -o HTTPSConnector -r
 5)Backup the broker:
 ----------------------
  mqsibackupbroker <BrokerName> -d <path> -a <BackupName.zip>
- 
-then delete that broker(eg:BRKR):
+ then delete that broker(eg:BRKR):
 
 6)Restore the Broker:
 -----------------------
@@ -102,6 +100,22 @@ step 1)create the broker with same queue manager
 step 2) stop the broker
 step 3)mqsirestorebroker <BrokerName> -d <path> -a <BackupFile.zip>
 Then it will Restore.
+
+7)Database configuration
+-------------------------
+mqsisetdbparms <Broker_Name> -n <Data_Source_Name(DSN)> -u <User_Name> -p <Password>
+
+8)To check database configuration
+-----------------------------------
+mqsicvp <Broker_Name> -n <Data_Source_Name(DSN)>
+
+9)When using java compute node for database operations
+------------------------------------------------------------
+mqsisetdbparms <Broker_Name> -n jdbc::<oracle_user> -u <User_Name> -p <Password>
+
+10)To deploy bar file into broker
+--------------------------------------
+mqsideploy <Broker_Name> -e <Execution_Group> -a <Application(ex:- xyz.bar)>
  
 ===============================================THE END====================================================
 

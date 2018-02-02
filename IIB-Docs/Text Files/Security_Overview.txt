@@ -1,0 +1,24 @@
+The following topics introduce the concepts that you need to understand before you set up security 
+for IBM Integration Bus:
+	1. Planning for security
+	2. Administration security overview
+	3. Message flow security overview
+	4. Role-based security
+	5. WS-Security
+	6. Authorization for configuration tasks
+	7. Security exits
+	8. Public key cryptography
+	9. Digital certificates
+	10. Digital signatures
+
+	
+	
+Web Service Security (WS-Security)
+----------------------------------
+WS-Security also describes how to encode binary security tokens and attach them to SOAP messages. 
+Specifically, the WS-Security profile specifications describe how to encode the following tokens:
+	1. Username tokens
+	2. X.509 certificates
+	3. SAML assertions
+	4. Kerberos tickets
+	5. LTPA binary tokens

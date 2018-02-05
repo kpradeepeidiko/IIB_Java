@@ -1,0 +1,123 @@
+
+
+CREATE COMPUTE MODULE PY_CLR_ROUTER
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		----------------------------Modified by Naresh------------------------
+		
+--SET OutputRoot.JSON = InputRoot.XMLNSC;
+--		SET OutputRoot.JSON.Data = REPLACE(OutputRoot.JSON,'<',' ');
+--		SET OutputRoot.JSON.Data = REPLACE(OutputRoot.JSON.Data,'>',' ');
+--		
+--		SET OutputRoot.XMLNSC = OutputRoot.JSON.Data;
+--		DELETE FIELD OutputRoot.JSON;
+		SET OutputRoot = InputRoot;
+			
+	DECLARE blbOutMsg BLOB;
+		DECLARE blbInMsg BLOB;
+		SET blbInMsg = ASBITSTREAM(OutputRoot.XMLNSC,InputRoot.Properties.Encoding,InputRoot.Properties.CodedCharSetId);
+		DECLARE charac CHARACTER;
+	  SET charac = CAST(blbInMsg AS CHARACTER CCSID 1208);
+	
+		DECLARE ResChar CHARACTER;
+		CALL procReplaceJava(charac) INTO ResChar;
+		---------------------DECLARE blbOutMsg BLOB;
+		SET blbOutMsg = CAST(ResChar AS BLOB CCSID 1208);
+	
+			
+		CREATE LASTCHILD OF Environment DOMAIN 'XMLNSC' PARSE (blbOutMsg,InputRoot.Properties.Encoding,InputRoot.Properties.CodedCharSetId);
+		SET OutputRoot.XMLNSC = Environment.XMLNSC;		
+		DELETE FIELD Environment.XMLNSC;
+		-----------------------------------------------------------------------
+	--	SET OutputRoot = InputRoot;
+		DECLARE interfaceCode CHARACTER;
+		SET interfaceCode = InputRoot.XMLNSC.MSG.MSGHEADER.INTERFACECODE;
+		IF interfaceCode = 'PAYNIPCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYNIPCLR_Q_REQ';
+		ELSEIF interfaceCode = 'PAYINTSWTCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYINTSWTCLR_Q_REQ';
+		ELSEIF interfaceCode = 'PAYETZCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYETZCLR_Q_REQ';
+		ELSEIF interfaceCode = 'PAYNEFTCLR' THEN
+		
+			--latet update on 18082016 by satheesh for NEFT upgrate 
+		/*	IF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE IN('CM','CG','TD','GA','GH','KE','MZ','TZ','ZM','GN','UG','CI','SN','BF','BJ','CD','SL','LB') THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_AF'; */
+				
+				--latest update on 30th august 2017 by Sandhya for NEFT(Added Liberia and Serria Leone)
+			IF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE IN('CM','CG','TD','GA') THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_CEMAC';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE IN('GH') THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName='EFTCLR_Q_REQ_GHN';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE='KE' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName='EFTCLR_Q_REQ_KENYA';
+				---
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'MZ' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_MZM';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'TZ' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_TAN';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'ZM' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_ZAM';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'GN' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_GUN';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'UG' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_UGN';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE IN ('CI','SN','BF','BJ') THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_SICA';
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'CD' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_CONGO'; 
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'LR' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_LIBERIA'; 
+			ELSEIF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE = 'SL' THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_SERRIA';
+			ELSE
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYNEFTCLR_Q_REQ';
+
+			END IF;
+		ELSEIF interfaceCode = 'PAYRTGSCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYRTGSCLR_Q_REQ';
+		ELSEIF interfaceCode = 'PAYMOBCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYMOBCLR_Q_REQ';
+		ELSEIF interfaceCode = 'PAYSWFTCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYSWFTCLR_Q_REQ';
+		ELSEIF interfaceCode = 'COLLCHQCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'COLLCHQCLR_Q_REQ';
+		ELSEIF interfaceCode = 'PAYECCLR' THEN
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYECCLR_Q_REQ';
+		ELSEIF interfaceCode = 'COLLDDOFT' THEN
+			--SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYNEFTCLR_Q_REQ';
+			--Added on March8 to route messages to GHANA NEFT
+			IF InputRoot.XMLNSC.MSG.MSGDETAIL.SUBCODE IN('GH') THEN
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EFTCLR_Q_REQ_GHN';
+			ELSE
+				SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'PAYNEFTCLR_Q_REQ';
+			END IF;
+
+		END IF;
+
+	END;
+END MODULE;
+------------------------------Modified by naresh----------
+
+CREATE PROCEDURE procReplaceJava(IN charac CHARACTER) RETURNS CHARACTER
+		LANGUAGE JAVA
+		EXTERNAL NAME "com.eidiko.Replace.ReplaceSpclChars.replaceChar";
+		
+		---------------------------
+		

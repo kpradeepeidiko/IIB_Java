@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Broker><CompiledMessageFlow name="Common_ExceptionHandler" type="subflow"><ConfigurableProperty override="/var/UBA/EXC/Logs_TreasuryLogExceptions.log" uri="Common_ExceptionHandler#Trace.filePath"/><ConfigurableProperty uri="Common_ExceptionHandler#MessageLog.dataSource"/><ConfigurableProperty uri="Common_ExceptionHandler#MessageLog.connectDatasourceBeforeFlowStarts"/><ConfigurableProperty uri="Common_ExceptionHandler#MessageLog.validateMaster"/></CompiledMessageFlow></Broker>

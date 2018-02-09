@@ -1,0 +1,22 @@
+	CREATE FUNCTION initLog4j(IN CONFIG_FILE_NAME CHARACTER)
+	RETURNS BOOLEAN
+	LANGUAGE JAVA
+	EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.initLog4j";
+
+
+
+	CREATE FUNCTION writeToLogFile(IN COMPONENT_NAME CHARACTER, IN LOGGER_NAME CHARACTER, IN LEVEL CHARACTER, IN TEXT CHARACTER)
+	RETURNS BOOLEAN
+	LANGUAGE JAVA
+	EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.log";
+============================================================================================
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DECLARE rc BOOLEAN;
+		DECLARE inBlobMsg BLOB;
+		SET inBlobMsg = ASBITSTREAM(OutputRoot.XMLNSC, InputRoot.Properties.Encoding, InputRoot.Properties.CodedCharSetId);
+		DECLARE inAsChar CHARACTER;
+		SET inAsChar = CAST(inBlobMsg AS CHARACTER CCSID 1252);
+		CALL initLog4j(LOG_CONFIG) INTO rc;
+		CALL writeToLogFile(MessageFlowLabel, 'Log_Flow', 'info', inAsChar) INTO rc;
+	END;

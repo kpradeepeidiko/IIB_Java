@@ -1,8 +1,19 @@
 https://www.ibm.com/developerworks/websphere/library/techarticles/1107_rajan/1107_rajan.html
 
-
-
+=====================================================================================================
 
 JavaCompute Node
 --------------------
 https://www.ibm.com/support/knowledgecenter/SSKM8N_8.0.0/com.ibm.etools.mft.doc/ac30330_.htm?view=kc
+
+=============================================================================================
+
+Types Of Tree In IIB
+----------------------
+The input node creates this message assembly, which consists of four trees:
+
+	1. Message tree structure
+	2. Environment tree structure
+	3. Local environment tree structure
+	4. Exception list tree structure
+===============================================================================================

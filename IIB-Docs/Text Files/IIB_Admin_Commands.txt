@@ -1,6 +1,6 @@
 
                                                   IIB_ADMIN COMMANDS
-												  ==================
+						  ==================
 
 1) Creating Broker:
 -------------------
@@ -34,7 +34,7 @@ mqsideploy <BrokerName> -e <ExecutionGroup> -a <BarFilePath>
 --------------------------------------------------------------
 mqsilist <BrokerName> -e <ExecutionGroup>
 
-9)Display bar file properties:
+9)Disployed bar file properties:
 -------------------------------
 mqsireadbar -b <BarfilePath> -r
 
@@ -60,7 +60,7 @@ mqsistopmsgflow <BrokerName> -e <ExecutionGroupName>
 
 14)start and stop the message flow :
 --------------------------------------
-mqsistartmsgflow <BrokerName> -e <ExecutionGroupName> -k <application name> -m <flowName>
+mqsistartmsgflow <BrokerName> -e <ExecutionGroupName> -k <application name> -m <FlowName>
 mqsistopmsgflow <BrokerName> -e <ExecutionGroupName> -k <applicationName> -m <FlowName>
 
 15)Delete broker:

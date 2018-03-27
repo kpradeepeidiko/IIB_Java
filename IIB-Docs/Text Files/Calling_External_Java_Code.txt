@@ -9,8 +9,6 @@ CREATE COMPUTE MODULE Call_External_Java_Compute
 		SET OutputRoot.XMLNSC.Message.Encrypted = chrEncryptedData;
 		RETURN TRUE;
 	END;	
-
-
 END MODULE;
 
 
@@ -23,7 +21,8 @@ Java Code
 ------------
 package enc;
 
-public class SampleTest {
+public class SampleTest
+{
 	
 	public static String my_main(String txt)
 	{

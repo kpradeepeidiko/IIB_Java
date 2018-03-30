@@ -17,3 +17,7 @@ The input node creates this message assembly, which consists of four trees:
 	3. Local environment tree structure
 	4. Exception list tree structure
 ===============================================================================================
+CCSID codes:
+--------------
+1208
+1252

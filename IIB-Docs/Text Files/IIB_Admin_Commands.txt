@@ -8,7 +8,7 @@ mqsicreatebroker <brokername> -i <username> -a <password> -q <qmgrName>
 
 2)Creatin ExecutionGroup:
 --------------------------
-mqsicreateexecutiongroup <brokerName> -e <ExectuionGroupName>
+mqsicreateexecutiongroup <brokerName> -e <ExecutionGroupName>
 
 3)Start Broker:
 -----------------
@@ -117,5 +117,19 @@ mqsisetdbparms <Broker_Name> -n jdbc::<oracle_user> -u <User_Name> -p <Password>
 --------------------------------------
 mqsideploy <Broker_Name> -e <Execution_Group> -a <Application(ex:- xyz.bar)>
  
+11) To set FTP/SMTP server settings
+--------------------------------------
+    1. mqsisetdbparms MyBroker -n ftp::myidentity -u myuserid -p mypassword
+
+    2. mqsisetdbparms MyBroker -n sftp::myidentity -u myuserid -p mypassword
+
+    3. Configure a connection to an SFTP server to use Public Key authentication, by specifying an SSH identity file and pass phrase, instead of a password
+	    mqsisetdbparms MyBroker -n sftp::myidentity -u myuserid -i identity_file -r passphrase
+
+
+12)Setting keystore & truststore credentials in broker
+-------------------------------------------------------
+	mqsisetdbparms <Broker_Name> -n brokerKeystore::password -u <User_Name> -p <Password>
+	mqsisetdbparms <Broker_Name> -n brokerTruststore::password - <User_Name> -p <Password>
 ===============================================THE END====================================================
 

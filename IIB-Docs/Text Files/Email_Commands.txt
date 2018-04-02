@@ -1,0 +1,15 @@
+1. We have to create SMTP configuration
+---------------------------------------
+	mqsicreateconfigurableservice BRKR -c SMTP -o MYSERVER(any of ur choice)
+	
+2. We have to set SMTP host and port properties to our SMTP configuration
+-------------------------------------------------------------------------	
+	mqsichangeproperties BRKR -c SMTP -o MYSERVER -n serverName -v eidiko.netfirms.com:587
+	
+3. We have to create SMTP securiyIdentity
+-----------------------------------------	
+	mqsichangeproperties BRKR -c SMTP -o MYSERVER -n securityIdentity -v MyIdentity(any of ur choice)
+
+4. We have to set username and password for our securityIdentity
+----------------------------------------------------------------	
+	mqsichangeproperties BRKR -n smtp::MyIdentity -u <username> -p <password>

@@ -1,0 +1,7 @@
+Element	    Description
+-------  	--------------
+<types>		Defines the (XML Schema) data types used by the web service.
+<message>	Defines the data elements for each operation.
+<portType>	Describes the operations that can be performed and the messages involved.
+<binding>	Defines the protocol and data format for each portType.
+<service>	Defines the binding and SOAP address.

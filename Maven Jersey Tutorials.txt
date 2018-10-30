@@ -319,3 +319,9 @@ public class ConsumeRestWebService {
 Output:
 -------
 {"author":"Asha Latha","chatMessage":"Hello Pradeep!!!","id":1}
+===============================================================================================
+JSONParser parser = new JSONParser();
+Object json1 = parser.parse("{\"nodeId\":" + ROOT_NODE_ID + ",\"name\":\"" + ATTR_NAME + "\"}");
+Object json2 = parser.parse("{\"Name\":\"Pradeep\",\"Designation\":\"Software Developer\"}");
+
+

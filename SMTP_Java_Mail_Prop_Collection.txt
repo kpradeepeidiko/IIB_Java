@@ -1,0 +1,120 @@
+Send Mail Using Java API:
+===========================
+
+System Configurations:
+----------------------
+1. You have to configure local SMTP configurations Internet Information Service (IIS) 6.0 Manager
+2. Start the SMTP server
+
+
+Online site for java code:
+-----------------------------
+https://www.javatpoint.com/example-of-sending-email-using-java-mail-api
+
+
+
+Jar to download:
+-----------------
+mail.jar
+activation.jar
+
+
+
+Java Code
+---------
+	Steps to send email using JavaMail API
+	There are following three steps to send email using JavaMail. They are as follows:
+
+	1. Get the session object that stores all the information of host like host name, username, password etc.
+	2. Compose the message
+	3. Send the message
+
+
+
+	package com.kp;
+
+	import java.io.IOException;
+	import java.util.Properties;
+
+	import javax.mail.Message;
+	import javax.mail.MessagingException;
+	import javax.mail.Session;
+	import javax.mail.Transport;
+	import javax.mail.internet.MimeMessage;
+	import javax.mail.internet.InternetAddress;
+
+	public class SendingMailUsingJavaApi throws IOException {
+
+		public static void main(String[] args) {
+			  // TODO Auto-generated method stub
+			  String to = "pk455375@gmail.com";         //change accordingly  
+			  String from = "kpradeep455375@gmail.com"; //change accordingly  
+			  String host = "192.168.2.138";           //localhost (or) IP address  
+		  
+			 //Get the session object
+			  Properties properties = System.getProperties();  
+			  properties.setProperty("mail.smtp.host", host);  
+			  Session session = Session.getDefaultInstance(properties);  
+		  
+			 //compose the message  
+			  try{  
+				 MimeMessage message = new MimeMessage(session);  
+				 message.setFrom(new InternetAddress(from));  
+				 message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
+				 message.setSubject("Test Mail Subject");     //Mail Subject
+				 message.setText("Hello, this is example of sending email  ");  //Mail Body
+		  
+				 // Send message  
+				 Transport.send(message); 
+				 System.out.println("message sent successfully....");  
+		  
+			  }catch (MessagingException mex) {mex.printStackTrace();} 
+		}
+
+	}
+================================================================================
+Using Property Collection for reading .property file values:
+--------------------------------------------------------------
+
+Project Structure:
+------------------
+	SendingMailUsingJavaApi
+	|
+	|->src
+	   |
+	   |-> com.kp(a package)
+	 
+	 ->resource
+	   |
+	   |->propertyFiles(a folder)
+	      |
+		  |->emailProperties.properties(a file)
+		  
+
+
+
+Java Code:
+------------
+	package com.kp;
+
+	import java.io.FileInputStream;
+	import java.io.IOException;
+	import java.util.Properties;
+
+	public class ReadPropFile {
+		
+		public static void main(String[] args) throws IOException{
+			ReadPropFile obj = new ReadPropFile();
+			obj.getFile();
+		}
+		
+		private void getFile() throws IOException{
+			Properties p=new Properties();
+			p.load(new FileInputStream("resource/propertyFiles/emailProperties.properties"));	
+			System.out.println("To = " +   p.getProperty("to"));
+			System.out.println("From = " + p.getProperty("from"));
+			System.out.println("Host = " + p.getProperty("host"));
+			
+		}
+
+	}

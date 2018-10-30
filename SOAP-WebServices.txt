@@ -1,3 +1,0 @@
-Generate Client Using WSDL:
----------------------------
-https://www.eclipse.org/webtools/community/education/web/t320/Generating_a_client_from_WSDL.pdf

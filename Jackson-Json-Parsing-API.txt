@@ -1,0 +1,33 @@
+Site Url:
+-----------
+https://www.journaldev.com/2324/jackson-json-java-parser-api-example-tutorial
+
+Jakcon Json API:
+---------------------
+1. Jackson JSON Java Parser is very popular and used in Spring framework too. 
+2. Java JSON Processing API is not very user friendly and doesn’t provide features for automatic transformation from 
+   Json to Java object and vice versa. 
+3. Luckily we have some alternative APIs that we can use for JSON processing. 
+4. In last article we learned about Google Gson API and saw how easy to use it.
+
+
+Read Json from txt file:
+-----------------------------
+
+	//read json file data to String
+	byte[] jsonData = Files.readAllBytes(Paths.get("employee.txt"));
+
+	//create ObjectMapper instance
+	ObjectMapper objectMapper = new ObjectMapper();
+
+	//read JSON like DOM Parser
+	JsonNode rootNode = objectMapper.readTree(jsonData);
+	JsonNode idNode = rootNode.path("id");
+	System.out.println("id = "+idNode.asInt());
+
+	JsonNode phoneNosNode = rootNode.path("phoneNumbers");
+	Iterator<JsonNode> elements = phoneNosNode.elements();
+	while(elements.hasNext()){
+		JsonNode phone = elements.next();
+		System.out.println("Phone No = "+phone.asLong());
+	}
